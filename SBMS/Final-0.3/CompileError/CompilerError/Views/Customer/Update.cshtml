@@ -1,0 +1,111 @@
+﻿@model CompilerError.Models.CustomerViewModel
+
+@{
+    Layout = "~/Views/Shared/_KLayout.cshtml";
+    ViewBag.Title = "update";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h2 class="panel-title">Customer Update</h2>
+        </div>
+        <div class="panel-body">
+
+            <form method='post' style='text-align:center'>
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Code)</td>
+                        <th>@Html.TextBoxFor(c => c.Code, Model.Code)</th>
+                        <td>@Html.ValidationMessageFor(c => c.Code)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Name)</td>
+                        <th>@Html.TextBoxFor(c => c.Name, Model.Name)</th>
+                        <td>@Html.ValidationMessageFor(c => c.Name)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Address)</td>
+                        <th>@Html.TextBoxFor(c => c.Address, Model.Address)</th>
+                        <td>@Html.ValidationMessageFor(c => c.Address)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Contact)</td>
+                        <th>@Html.TextBoxFor(c => c.Contact, Model.Contact)</th>
+                        <td>@Html.ValidationMessageFor(c => c.Contact)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Email)</td>
+                        <th>@Html.TextBoxFor(c => c.Email, Model.Email)</th>
+                        <td>@Html.ValidationMessageFor(c => c.Email)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.LoyalityPoint)</td>
+                        <th>@Html.TextBoxFor(c => c.LoyalityPoint, Model.LoyalityPoint)</th>
+                        <td>@Html.ValidationMessageFor(c => c.LoyalityPoint)</td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><input type='submit' name='Add' value="save" style='color:green'></td>
+                        <td>
+                            @if (ViewBag.Message != null)
+                            {
+                                <h3>
+                                    <b>
+                                        @ViewBag.Message
+                                    </b>
+                                </h3>
+                            }
+
+                        </td>
+                    </tr>
+                    <tr></tr>
+
+
+                </table>
+
+
+            </form>
+        </div>
+    </div>
+        <div>
+            @{
+                Html.RenderPartial("~/Views/Shared/Customer/_CustomerShow.cshtml", Model);
+            }
+        </div>
+        @section MyScript
+{
+            <script src="~/Scripts/jquery.validate.js"></script>
+
+            <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        }
+</body>
+</html>
+

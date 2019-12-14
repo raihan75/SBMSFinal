@@ -1,0 +1,47 @@
+﻿@model CompilerError.Models.SalesViewModel
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_KLayout.cshtml";
+}
+
+
+@* ..Main Section.. *@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h2 class="panel-title">Search Product</h2>
+    </div>
+    <div class="panel-body">
+
+        <div>
+            <table>
+                <tr>
+                    <th>Sl</th>
+                    <th>Product</th>
+                    <th>Sale</th>
+                    <th>Quantity</th>
+                    <th>MRP</th>
+                    <th>Total MRP</th>
+                </tr>
+                @{ int i = 1;}
+                @foreach (var sale in Model.SalesDetails)
+                {
+                    <tr>
+                        <td>@(i++)</td>
+                        <td>@sale.ProductId</td>
+                        <td>@sale.SaleId</td>
+                        <td>@sale.Quantity</td>
+                        <td>@sale.MRP</td>
+                        <td>@sale.TotalMRP</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div>
+
+</div>
+
+

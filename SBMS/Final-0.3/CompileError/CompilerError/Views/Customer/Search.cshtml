@@ -1,0 +1,81 @@
+﻿@model CompilerError.Models.CustomerViewModel
+
+@{
+    Layout = "~/Views/Shared/_KLayout.cshtml";
+    ViewBag.Title = "Search";
+}
+
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+
+
+
+    </head>
+    <body>*@
+@section MyCSS
+{
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+}
+
+<h2>Show </h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h2 class="panel-title">Customer Search</h2>
+    </div>
+    <div class="panel-body">
+
+        <form method='post' style='text-align:center'>
+
+
+            <b>search</b>
+            @Html.RadioButton("option", "Name") <text>Name</text>
+            @Html.RadioButton("option", "Contact") <text>Contact</text>
+            @Html.RadioButton("option", "Email")<text>Email</text>
+            <input type="text" name="search" />
+
+            <input type='submit' name='search' value="search" style='color:green'>
+
+        </form>
+
+    </div>
+</div>
+    <div style="height:100px; width:100px"></div>
+    <div>
+        @{
+            Html.RenderPartial("~/Views/Shared/Customer/_CustomerShow.cshtml", Model);
+        }
+
+        @Html.ActionLink("Add", "Add")
+    </div>
+    @section MyScript
+{
+        <script src="~/Scripts/jquery.validate.js"></script>
+
+        <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    }
+
+    @*</body>
+        </html>
+    *@
+

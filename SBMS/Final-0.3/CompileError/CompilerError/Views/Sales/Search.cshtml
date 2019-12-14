@@ -1,0 +1,62 @@
+﻿@model CompilerError.Models.SalesViewModel
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_KLayout.cshtml";
+}
+
+
+@* ..Main Section.. *@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h2 class="panel-title">Search Product</h2>
+    </div>
+    <div class="panel-body">
+        <div>
+            <form method='post' style='text-align:center'>
+
+
+                <b>search</b>
+               
+                @Html.RadioButton("option", "Code") <text>Code</text>
+              
+                <input type="text" name="search" />
+                <input type='submit' name='search' value="search" style='color:green'>
+
+
+            </form>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Sl</th>
+                    <th>Customer</th>
+                    <th>Code</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                @{ int i = 1;}
+                @foreach (var sale in Model.Sales)
+                {
+                    <tr>
+                        <td>@(i++)</td>
+                        <td>@sale.CustomerId</td>
+                        <td>@sale.Code</td>
+                        <td>@sale.Date</td>
+                        <td>
+                            @Html.ActionLink("SaleDetail", "SaleDetail", new { Id = sale.Id })
+                           
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Convert View To PDF", "PrintViewToPdf")
+</div>
+
+

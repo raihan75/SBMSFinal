@@ -1,0 +1,188 @@
+﻿@model CompilerError.Models.CustomerViewModel
+
+@{
+
+    Layout = "~/Views/Shared/_KLayout.cshtml";
+
+    ViewBag.Title = "Add";
+
+}
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+
+
+
+    </head>
+    <body>*@
+@section MyCSS
+{
+    @*<style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>*@
+}
+<<div class="panel panel-info">
+    <div class="panel-heading">
+        <h2 class="panel-title">Customer Add</h2>
+    </div>
+    <div class="panel-body">
+
+        <form method='post' style='text-align:center'>
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Code)</td>
+                    <th>@Html.TextBoxFor(c => c.Code, Model.Code)</th>
+                    <td><p id="code">@Html.ValidationMessageFor(c => c.Code)</p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Name)</td>
+                    <th>@Html.TextBoxFor(c => c.Name, Model.Name)</th>
+                    <td>@Html.ValidationMessageFor(c => c.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Address)</td>
+                    <th>@Html.TextBoxFor(c => c.Address, Model.Address)</th>
+                    <td>@Html.ValidationMessageFor(c => c.Address)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Contact)</td>
+                    <th>@Html.TextBoxFor(c => c.Contact, Model.Contact)</th>
+                    <td><p id="contact">@Html.ValidationMessageFor(c => c.Contact)</p></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Email)</td>
+                    <th>@Html.TextBoxFor(c => c.Email, Model.Email)</th>
+                    <td><p id="email">@Html.ValidationMessageFor(c => c.Email)</p></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.LoyalityPoint)</td>
+                    <th>@Html.TextBoxFor(c => c.LoyalityPoint, Model.LoyalityPoint)</th>
+                    <td>@Html.ValidationMessageFor(c => c.LoyalityPoint)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input type='submit' name='Add' value="save" style='color:green'></td>
+                    <td>
+                        @if (ViewBag.Message != null)
+                        {
+                            <h3>
+                                <b>
+                                    @ViewBag.Message
+                                </b>
+                            </h3>
+                        }
+
+                    </td>
+                </tr>
+                <tr></tr>
+
+
+            </table>
+
+
+        </form>
+    </div>
+ </div>
+
+    <div style="height:100px; width:100px"></div>
+    <div>
+        @{
+            Html.RenderPartial("~/Views/Shared/Customer/_CustomerShow.cshtml", Model);
+        }
+    </div>
+    @section MyScript
+{
+        <script src="~/Scripts/jquery.validate.js"></script>
+
+        <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#Code').focusout(function () {
+                    var customerCode = $("#Code").val();
+                    var JsonRequestData = { CustomerCode: customerCode };
+                    $.ajax({
+                        url: "/Customer/GetCodeUnique",
+                        type: "POST",
+                        data: JsonRequestData,
+                        success: function (isHas) {
+                            if (isHas == true) {
+                                $('#Code').val("");
+                                $('#code').text("code allready exit..");
+
+                            }
+
+                        },
+                        error: function () { alert("Error!!"); }
+                    });
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#Contact').focusout(function () {
+                    var customerContact = $("#Contact").val();
+                    var JsonRequestData = { CustomerContact: customerContact };
+                    $.ajax({
+                        url: "/Customer/GetContactUnique",
+                        type: "POST",
+                        data: JsonRequestData,
+                        success: function (isHas) {
+                            if (isHas == true) {
+                                $('#Contact').val("");
+                                $('#contact').text("contact allready exit..");
+
+                            }
+
+                        },
+                        error: function () { alert("Error!!"); }
+                    });
+                });
+            });
+        </script>
+        <script>
+            $('#Email').focusout(function () {
+                var customeremail = $("#Email").val();
+                var JsonRequestData = { CustomerEmail: customeremail };
+                $.ajax({
+                    url: "/Customer/GetEmailUnique",
+                    type: "POST",
+                    data: JsonRequestData,
+                    success: function (isHas) {
+                        if (isHas == true) {
+                            $('#Email').val("");
+                            $('#email').text("email allready exit..");
+
+                        }
+
+                    },
+                    error: function () { alert("Error!!"); }
+                });
+            });
+
+        </script>
+    }
+
+    @*
+        </body>
+        </html>*@
+
